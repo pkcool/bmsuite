@@ -10,5 +10,8 @@
     <module>bmsuite-common</module>
     <module>bmsuite-framework</module>
     <module>bmsuite-framework-web</module>
+    <module>bmsuite-webstore</module>
+    <module>bmsuite-webstore-admin</module>
+    <module>bmsuite-erp</module>
   </modules>
 </project>
