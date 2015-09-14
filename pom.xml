@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.enginemobi</groupId>
-  <artifactId>bmsuite</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>bmsuite</name>
-  <modules>
-    <module>bmsuite-common</module>
-    <module>bmsuite-framework</module>
-    <module>bmsuite-framework-web</module>
-    <module>bmsuite-webstore</module>
-    <module>bmsuite-webstore-admin</module>
-    <module>bmsuite-erp</module>
-  </modules>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.enginemobi</groupId>
+    <artifactId>bmsuite</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>bmsuite</name>
+    <url>http://pkcool.github.io/bmsuite</url>
+    <description>BmSuite Top Level Project</description>
+
+    <developers>
+        <developer>
+            <id>bo</id>
+            <name>Bo Chen</name>
+            <email>enginemobi@gmail.com</email>
+            <organization>Engine Mobi</organization>
+            <organizationUrl>http://www.enginemobi.org</organizationUrl>
+            <roles>
+                <role>Team Lead</role>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+10</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <sm-core.junit.version>4.9</sm-core.junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <modules>
+        <module>bmsuite-common</module>
+        <module>bmsuite-framework</module>
+        <module>bmsuite-framework-web</module>
+        <module>bmsuite-webstore</module>
+        <module>bmsuite-webstore-admin</module>
+        <module>bmsuite-erp</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
