@@ -225,7 +225,7 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public boolean isActive() {
-        return DateUtil.isActive(getActiveStartDate(), getActiveEndDate(), true);
+        return DateUtil.isActive(getActiveStartDate(), getActiveEndDate(), true) && 'Y' != getArchived();
     }
 
     public String getSku() {
