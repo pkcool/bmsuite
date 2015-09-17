@@ -10,9 +10,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-/**
- * Created by pkcool on 9/17/15.
- */
 @Embeddable
 //@org.hibernate.annotations.Entity(dynamicUpdate = true, dynamicInsert = true)
 public class AuditSection implements Serializable {

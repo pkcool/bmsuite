@@ -34,7 +34,7 @@
 
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
 
     </dependencies>
