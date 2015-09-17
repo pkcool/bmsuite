@@ -1,6 +1,8 @@
 package com.enginemobi.core.catalog.domain;
 
 import com.enginemobi.common.money.Money;
+import com.enginemobi.common.persistence.ArchiveStatus;
+import com.enginemobi.common.persistence.Status;
 import com.enginemobi.common.util.DateUtil;
 import com.enginemobi.core.common.domain.audit.AuditListener;
 import com.enginemobi.core.common.domain.audit.AuditSection;
@@ -38,7 +40,7 @@ import java.util.Set;
 @Table(name = "PRODUCT", schema = SchemaConstant.BMSUITEDB_SCHEMA,
         indexes={
                 @Index(name="ACTIVE_START_DATE_INDEX", columnList="ACTIVE_START_DATE")})
-public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements Product, Auditable {
+public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements Product, Status, Auditable {
     /** fields **/
     @Id
     @Column(name = "PRODUCT_ID", unique = true, nullable = false)
@@ -112,6 +114,8 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     @Column(name = "DISPLAY_TEMPLATE")
     protected String displayTemplate;
 
+    @Embedded
+    protected ArchiveStatus archiveStatus = new ArchiveStatus();
     /** end of fields **/
 
 
@@ -201,6 +205,23 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     public void setActiveEndDate(Date activeEndDate) {
         this.activeEndDate = activeEndDate;
 
+    }
+
+    public Character getArchived() {
+        ArchiveStatus temp;
+        if (archiveStatus == null) {
+            temp = new ArchiveStatus();
+        } else {
+            temp = archiveStatus;
+        }
+        return temp.getArchived();
+    }
+
+    public void setArchived(Character archived) {
+        if (archiveStatus == null) {
+            archiveStatus = new ArchiveStatus();
+        }
+        archiveStatus.setArchived(archived);
     }
 
     public boolean isActive() {
