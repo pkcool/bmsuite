@@ -8,4 +8,10 @@ import java.io.Serializable;
 public interface BmSuiteBaseEntity<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>>
         extends Serializable, Comparable<E>  {
 
+        K getId();
+
+        void setId(K id);
+
+        boolean isNew();
+
 }

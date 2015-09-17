@@ -28,8 +28,9 @@
     </developers>
 
     <properties>
-        <sm-core.junit.version>4.9</sm-core.junit.version>
+        <bmsuite.junit.version>4.9</bmsuite.junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <bmsuite.hibernate-entitymanager-version>5.0.0.Final</bmsuite.hibernate-entitymanager-version>
     </properties>
 
 
@@ -44,6 +45,50 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- BmSuite Libraries -->
+            <dependency>
+                <groupId>com.enginemobi</groupId>
+                <artifactId>bmsuite-common</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- Hibernate Libraries -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${bmsuite.hibernate-entitymanager-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>javassist</artifactId>
+                        <groupId>org.javassist</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${bmsuite.hibernate-entitymanager-version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>asm</groupId>
+                        <artifactId>asm</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>cglib</groupId>
+                        <artifactId>cglib</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>javassist</artifactId>
+                        <groupId>org.javassist</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <!-- Loggers start -->
             <dependency>
@@ -73,4 +118,5 @@
 
         </dependencies>
     </dependencyManagement>
+
 </project>
