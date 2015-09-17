@@ -200,39 +200,39 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public BigDecimal getWidth() {
-        return null;
+        return dimension.getWidth();
     }
 
     public void setWidth(BigDecimal width) {
-
+        dimension.setWidth(width);
     }
 
     public BigDecimal getHeight() {
-        return null;
+        return dimension.getHeight();
     }
 
     public void setHeight(BigDecimal height) {
-
+        dimension.setHeight(height);
     }
 
     public BigDecimal getDepth() {
-        return null;
+        return dimension.getDepth();
     }
 
     public void setDepth(BigDecimal depth) {
-
+        dimension.setDepth(depth);
     }
 
     public BigDecimal getGirth() {
-        return null;
+        return dimension.getGirth();
     }
 
     public void setGirth(BigDecimal girth) {
-
+        dimension.setGirth(girth);
     }
 
     public String getDimensionString() {
-        return null;
+        return dimension.getDimensionString();
     }
 
     public Weight getWeight() {
