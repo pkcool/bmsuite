@@ -1,4 +1,4 @@
-package com.enginemobi.core.common.domain;
+package com.enginemobi.core.common.domain.audit;
 
 /**
  * Created by pkcool on 9/17/15.

@@ -1,4 +1,4 @@
-package com.enginemobi.core.common.domain;
+package com.enginemobi.core.common.domain.audit;
 
 import com.enginemobi.common.util.CloneUtils;
 
