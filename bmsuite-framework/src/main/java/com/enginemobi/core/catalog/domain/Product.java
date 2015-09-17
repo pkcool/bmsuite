@@ -77,6 +77,40 @@ interface Product extends BmSuiteBaseEntity<Long, Product> {
     void setLongDescription(String longDescription);
 
     /**
+     * Return whether or not the product is virtual
+     * @return
+     */
+    boolean getProductIsVirtual();
+
+    /**
+     * Sets whether or not the product is virtual
+     * @param isVirtual
+     */
+    void setProductIsVirtual(boolean isVirtual);
+
+    /**
+     * Return whether or not the product is shippable
+     * @return
+     */
+    boolean getProductIsShippable();
+
+    /**
+     * Sets whether or not the product is shippable
+     */
+    void setProductIsShippable(boolean isShippable);
+
+    /**
+     * Return whether or not the product is free
+     * @return
+     */
+    boolean getProductIsFree();
+
+    /**
+     * Sets whether or not the product is free
+     */
+    void setProductIsFree(boolean productIsFree);
+
+    /**
      * Returns the first date a product will be available that is used to determine whether
      * to display the product.
      * <br />

@@ -78,6 +78,16 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     @JoinColumn(name = "DEFAULT_CATEGORY_ID")
     protected Category defaultCategory;
 
+    @Column(name = "PRODUCT_VIRTUAL")
+    private boolean productVirtual = false;
+
+    @Column(name = "PRODUCT_SHIP")
+    private boolean productShippable = false;
+
+
+    @Column(name = "PRODUCT_FREE")
+    private boolean productIsFree = false;
+
     @Embedded
     protected Dimension dimension = new Dimension();
 
@@ -149,6 +159,30 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
 
+    }
+
+    public boolean getProductIsShippable() {
+        return productShippable;
+    }
+
+    public void setProductIsShippable(boolean productShipeable) {
+        this.productShippable = productShipeable;
+    }
+
+    public boolean getProductIsVirtual() {
+        return productVirtual;
+    }
+
+    public void setProductIsVirtual(boolean productVirtual) {
+        this.productVirtual = productVirtual;
+    }
+
+    public boolean getProductIsFree() {
+        return productIsFree;
+    }
+
+    public void setProductIsFree(boolean productIsFree) {
+        this.productIsFree = productIsFree;
     }
 
     public Date getActiveStartDate() {
