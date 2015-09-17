@@ -10,17 +10,7 @@ import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -83,6 +73,34 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     @Pattern(regexp="^[a-zA-Z0-9_]*$")
     @Column(name = "SKU")
     private String sku;
+
+    @ManyToOne(targetEntity = CategoryImpl.class)
+    @JoinColumn(name = "DEFAULT_CATEGORY_ID")
+    protected Category defaultCategory;
+
+    @Embedded
+    protected Dimension dimension = new Dimension();
+
+    @Embedded
+    protected Weight weight = new Weight();
+
+    @Column(name = "IS_FEATURED_PRODUCT", nullable = false)
+    protected Boolean isFeaturedProduct = false;
+
+    @Transient
+    protected String promoMessage;
+
+    @Column(name = "URL")
+    protected String url;
+
+    @Column(name = "OVERRIDE_GENERATED_URL")
+    protected Boolean overrideGeneratedUrl = false;
+
+    @Column(name = "URL_KEY")
+    protected String urlKey;
+
+    @Column(name = "DISPLAY_TEMPLATE")
+    protected String displayTemplate;
 
     /** end of fields **/
 
@@ -165,19 +183,20 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public Category getCategory() {
-        return null;
+        return defaultCategory;
     }
 
     public void setCategory(Category category) {
+        this.defaultCategory = category;
 
     }
 
     public Dimension getDimension() {
-        return null;
+        return dimension;
     }
 
     public void setDimension(Dimension dimension) {
-
+        this.dimension = dimension;
     }
 
     public BigDecimal getWidth() {
@@ -217,10 +236,11 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public Weight getWeight() {
-        return null;
+        return weight;
     }
 
     public void setWeight(Weight weight) {
+        this.weight = weight;
 
     }
 
@@ -241,19 +261,20 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public boolean isFeaturedProduct() {
-        return false;
+        return isFeaturedProduct;
     }
 
     public void setFeaturedProduct(boolean isFeaturedProduct) {
+        this.isFeaturedProduct = isFeaturedProduct;
 
     }
 
     public String getPromoMessage() {
-        return null;
+        return promoMessage;
     }
 
     public void setPromoMessage(String promoMessage) {
-
+        this.promoMessage = promoMessage;
     }
 
     public List<ProductOption> getProductOptions() {
@@ -269,34 +290,37 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     }
 
     public String getUrl() {
-        return null;
+        return url;
     }
 
     public void setUrl(String url) {
-
+        this.url = url;
     }
 
     public Boolean getOverrideGeneratedUrl() {
-        return null;
+        return overrideGeneratedUrl;
     }
 
     public void setOverrideGeneratedUrl(Boolean overrideGeneratedUrl) {
+        this.overrideGeneratedUrl = overrideGeneratedUrl;
 
     }
 
     public String getUrlKey() {
-        return null;
+        return urlKey;
     }
 
-    public void setUrlKey(String url) {
+    public void setUrlKey(String urlKey) {
+        this.urlKey = urlKey;
 
     }
 
     public String getDisplayTemplate() {
-        return null;
+        return displayTemplate;
     }
 
     public void setDisplayTemplate(String displayTemplate) {
+        this.displayTemplate = displayTemplate;
 
     }
 

@@ -404,7 +404,7 @@ interface Product extends BmSuiteBaseEntity<Long, Product> {
      * unique url-fragment for this product by taking the {@link this.getName()} and removing special characters and replacing
      * dashes with spaces.
      */
-    void setUrlKey(String url);
+    void setUrlKey(String urlKey);
 
     /**
      * Returns the name of a display template that is used to render this product.   Most implementations have a default
