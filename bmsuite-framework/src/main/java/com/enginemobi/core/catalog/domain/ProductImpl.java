@@ -48,10 +48,10 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
             pkColumnName = SchemaConstant.TABLE_GENERATOR_PKCOLUMN_NAME, valueColumnName = SchemaConstant.TABLE_GENERATOR_VALUE_COLUMN_NAME,
             pkColumnValue = "PRODUCT_SEQ_NEXT_VAL")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = SchemaConstant.TABLE_GENERATOR_NAME)
-    private Long id;
+    protected Long id;
 
     @Embedded
-    private AuditSection auditSection = new AuditSection();
+    protected AuditSection auditSection = new AuditSection();
 
     @Column(name = "NAME")
     protected String name;
@@ -74,21 +74,21 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
     @NotEmpty
     @Pattern(regexp="^[a-zA-Z0-9_]*$")
     @Column(name = "SKU")
-    private String sku;
+    protected String sku;
 
     @ManyToOne(targetEntity = CategoryImpl.class)
     @JoinColumn(name = "DEFAULT_CATEGORY_ID")
     protected Category defaultCategory;
 
     @Column(name = "PRODUCT_VIRTUAL")
-    private boolean productVirtual = false;
+    protected boolean productVirtual = false;
 
     @Column(name = "PRODUCT_SHIP")
-    private boolean productShippable = false;
+    protected boolean productShippable = false;
 
 
     @Column(name = "PRODUCT_FREE")
-    private boolean productIsFree = false;
+    protected boolean productIsFree = false;
 
     @Embedded
     protected Dimension dimension = new Dimension();
