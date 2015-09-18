@@ -4,54 +4,78 @@ import com.enginemobi.common.persistence.Status;
 import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
 import com.enginemobi.core.reference.country.domain.Country;
 import com.enginemobi.core.reference.currency.domain.Currency;
+import com.enginemobi.core.reference.language.domain.Language;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represent merchant store
  */
 public interface Store extends Status, BmSuiteBaseEntity<Long, Store> {
 
-     String getCode();
-     void setCode(String code);
+    String getCode();
 
-     String getName();
-     void setName(String name);
+    void setCode(String code);
 
-     // store address
-     String getAddress1();
-     void setAddress1(String address1);
+    String getName();
 
-     String getAddress2();
-     void setAddress2(String address2);
+    void setName(String name);
 
-     String getSuburb();
-     void setSuburb(String suburb);
+    // store address
+    String getAddress1();
 
-     void setState(String state);
-     String getState();
+    void setAddress1(String address1);
 
-     String getPostcode();
-     void setPostcode(String postcode);
+    String getAddress2();
 
-     Country getCountry();
-     void setCountry(Country country);
+    void setAddress2(String address2);
 
-     String getPhone();
-     void setPhone(String phone);
+    String getSuburb();
 
-     String getFax();
-     void setFax(String fax);
+    void setSuburb(String suburb);
 
-     String getEmail();
-     void setEmail(String email);
+    void setState(String state);
 
-     String getWebsiteUrl();
-     void setWebsiteUrl(String websiteUrl);
+    String getState();
 
-     Date getInBusinessSince();
-     void setInBusinessSince(Date inBusinessSince);
+    String getPostcode();
+
+    void setPostcode(String postcode);
+
+    Country getCountry();
+
+    void setCountry(Country country);
+
+    String getPhone();
+
+    void setPhone(String phone);
+
+    String getFax();
+
+    void setFax(String fax);
+
+    String getEmail();
+
+    void setEmail(String email);
+
+    String getWebsiteUrl();
+
+    void setWebsiteUrl(String websiteUrl);
+
+    Date getInBusinessSince();
+
+    void setInBusinessSince(Date inBusinessSince);
 
     Currency getCurrency();
+
     void setCurrency(Currency currency);
+
+    Language getDefaultLanguage();
+
+    void setDefaultLanguage(Language defaultLanguage);
+
+    List<Language> getLanguages();
+
+    void setLanguages(List<Language> languages);
 }

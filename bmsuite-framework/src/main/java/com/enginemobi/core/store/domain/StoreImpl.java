@@ -7,13 +7,16 @@ import com.enginemobi.core.reference.country.domain.Country;
 import com.enginemobi.core.reference.country.domain.CountryImpl;
 import com.enginemobi.core.reference.currency.domain.Currency;
 import com.enginemobi.core.reference.currency.domain.CurrencyImpl;
+import com.enginemobi.core.reference.language.domain.Language;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "MERCHANT_STORE", schema= SchemaConstant.BMSUITEDB_SCHEMA)
@@ -71,6 +74,15 @@ public class StoreImpl extends BmSuiteBaseEntityImpl<Long, Store> implements Sto
     @Temporal(TemporalType.DATE)
     @Column(name = "IN_BUSINESS_SINCE")
     private Date inBusinessSince = new Date();
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Language.class)
+    @JoinColumn(name = "LANGUAGE_ID", nullable=false)
+    private Language defaultLanguage;
+
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "MERCHANT_LANGUAGE")
+    private List<Language> languages = new ArrayList<Language>();
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = CurrencyImpl.class)
     @JoinColumn(name = "CURRENCY_ID", nullable=false)
@@ -221,6 +233,24 @@ public class StoreImpl extends BmSuiteBaseEntityImpl<Long, Store> implements Sto
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    public Language getDefaultLanguage() {
+        return defaultLanguage;
+    }
+
+    public void setDefaultLanguage(Language defaultLanguage) {
+        this.defaultLanguage = defaultLanguage;
+    }
+
+
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
     }
 
 }
