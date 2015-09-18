@@ -2,6 +2,8 @@ package com.enginemobi.core.store.domain;
 
 import com.enginemobi.common.persistence.ArchiveStatus;
 import com.enginemobi.core.constants.SchemaConstant;
+import com.enginemobi.core.reference.country.domain.Country;
+import com.enginemobi.core.reference.country.domain.CountryImpl;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -56,8 +58,9 @@ public class StoreImpl implements Store {
     @Column(name = "STORE_POSTCODE")
     private String postcode;
 
-    @Column(name = "STORE_COUNTRY")
-    private String country;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CountryImpl.class)
+    @JoinColumn(name="COUNTRY_ID", nullable=false, updatable=true)
+    private Country country;
 
     @Column(name = "STORE_PHONE", length=50)
     private String phone;
@@ -126,11 +129,11 @@ public class StoreImpl implements Store {
         this.postcode = postcode;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

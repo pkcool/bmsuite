@@ -1,6 +1,7 @@
 package com.enginemobi.core.store.domain;
 
 import com.enginemobi.common.persistence.Status;
+import com.enginemobi.core.reference.country.domain.Country;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,8 +36,8 @@ public interface Store extends Status, Serializable {
      String getPostcode();
      void setPostcode(String postcode);
 
-     String getCountry();
-     void setCountry(String country);
+     Country getCountry();
+     void setCountry(Country country);
 
      String getPhone();
      void setPhone(String phone);
