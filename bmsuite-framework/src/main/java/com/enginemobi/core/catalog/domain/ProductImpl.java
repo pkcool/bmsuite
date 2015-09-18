@@ -116,6 +116,9 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
 
     @Embedded
     protected ArchiveStatus archiveStatus = new ArchiveStatus();
+
+    @Embedded
+    protected ProductAvailability productAvailability = new ProductAvailability();
     /** end of fields **/
 
 
@@ -243,6 +246,15 @@ public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements
 
     public void setCategory(Category category) {
         this.defaultCategory = category;
+
+    }
+
+    public ProductAvailability getProductAvailability() {
+        return productAvailability;
+    }
+
+    public void setProductAvailability(ProductAvailability productAvailability) {
+        this.productAvailability = productAvailability;
 
     }
 

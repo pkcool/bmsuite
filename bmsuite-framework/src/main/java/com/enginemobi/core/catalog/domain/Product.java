@@ -190,6 +190,19 @@ interface Product extends BmSuiteBaseEntity<Long, Product> {
 
 
     /**
+     * Gets the product availability info
+     * @return
+     */
+    ProductAvailability getProductAvailability();
+
+
+    /**
+     * Sets the product availability
+     * @param productAvailability
+     */
+    void setProductAvailability(ProductAvailability productAvailability);
+
+    /**
      * Returns the {@link Dimension} for this product
      * <br />
      * <br />
