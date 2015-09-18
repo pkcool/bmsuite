@@ -3,6 +3,7 @@ package com.enginemobi.core.store.domain;
 import com.enginemobi.common.persistence.Status;
 import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
 import com.enginemobi.core.reference.country.domain.Country;
+import com.enginemobi.core.reference.currency.domain.Currency;
 
 import java.util.Date;
 
@@ -51,6 +52,6 @@ public interface Store extends Status, BmSuiteBaseEntity<Long, Store> {
      Date getInBusinessSince();
      void setInBusinessSince(Date inBusinessSince);
 
-
-
+    Currency getCurrency();
+    void setCurrency(Currency currency);
 }

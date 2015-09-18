@@ -2,7 +2,6 @@ package com.enginemobi.core.reference.country.domain;
 
 import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
 
-import java.io.Serializable;
 
 public interface Country extends BmSuiteBaseEntity<Integer, Country>{
     String getName();

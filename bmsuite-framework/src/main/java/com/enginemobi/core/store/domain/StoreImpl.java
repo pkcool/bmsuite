@@ -5,6 +5,8 @@ import com.enginemobi.core.constants.SchemaConstant;
 import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
 import com.enginemobi.core.reference.country.domain.Country;
 import com.enginemobi.core.reference.country.domain.CountryImpl;
+import com.enginemobi.core.reference.currency.domain.Currency;
+import com.enginemobi.core.reference.currency.domain.CurrencyImpl;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -69,6 +71,10 @@ public class StoreImpl extends BmSuiteBaseEntityImpl<Long, Store> implements Sto
     @Temporal(TemporalType.DATE)
     @Column(name = "IN_BUSINESS_SINCE")
     private Date inBusinessSince = new Date();
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CurrencyImpl.class)
+    @JoinColumn(name = "CURRENCY_ID", nullable=false)
+    private Currency currency;
 
 
     @Embedded
@@ -207,6 +213,14 @@ public class StoreImpl extends BmSuiteBaseEntityImpl<Long, Store> implements Sto
 
     public boolean isActive() {
         return 'Y'!=getArchived();
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
 }
