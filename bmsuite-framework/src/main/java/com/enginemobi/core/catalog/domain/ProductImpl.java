@@ -24,8 +24,8 @@ import java.util.Set;
  * The Class ProductImpl is the default implementation of {@link Product}. A
  * product is a general description of an item that can be sold (for example: a
  * hat).
- * If you want to add fields specific to your implementation of
- * BroadLeafCommerce you should extend this class and add your fields. If you
+ * If you want to add fields specific to your implementation
+ * you should extend this class and add your fields. If you
  * need to make significant changes to the ProductImpl then you should implement
  * your own version of {@link Product}. <br>
  * <br>
