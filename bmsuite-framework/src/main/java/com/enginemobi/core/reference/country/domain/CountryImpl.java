@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "COUNTRY", schema= SchemaConstant.BMSUITEDB_SCHEMA)
 @Cacheable
-public class CountryImpl extends BmSuiteBaseEntityImpl<Integer,CountryImpl> implements Country {
+public class CountryImpl extends BmSuiteBaseEntityImpl<Integer,Country> implements Country {
     private static final long serialVersionUID = 1L;
 
     @Id

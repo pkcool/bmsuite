@@ -1,18 +1,15 @@
 package com.enginemobi.core.store.domain;
 
 import com.enginemobi.common.persistence.Status;
+import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
 import com.enginemobi.core.reference.country.domain.Country;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Represent merchant store
  */
-public interface Store extends Status, Serializable {
-
-     Long getId();
-     void setId(Long id);
+public interface Store extends Status, BmSuiteBaseEntity<Long, Store> {
 
      String getCode();
      void setCode(String code);
