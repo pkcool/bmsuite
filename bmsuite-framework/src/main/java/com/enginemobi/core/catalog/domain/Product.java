@@ -1,7 +1,7 @@
 package com.enginemobi.core.catalog.domain;
 
 import com.enginemobi.common.money.Money;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,7 +20,7 @@ import java.util.Set;
  * @author bc
  * @see {@link ProductImpl}
  */
-interface Product extends BmSuiteBaseEntity<Long, Product> {
+interface Product extends BmSuiteEntity<Long, Product> {
 
     /**
      * Returns the name of the product that is used for display purposes.

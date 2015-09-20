@@ -1,6 +1,6 @@
 package com.enginemobi.core.generic.dao;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 import com.enginemobi.core.generic.util.GenericEntityUtils;
 
 import javax.persistence.EntityManager;
@@ -13,14 +13,14 @@ import java.util.List;
 /**
  * @param <E> entity type
  */
-public abstract class BmSuiteBaseEntityDaoImpl<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>>
+public abstract class BmSuiteEntityDaoImpl<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
         extends BmSuiteJpaDaoSupport
-        implements BmSuiteBaseEntityDao<K, E> {
+        implements BmSuiteEntityDao<K, E> {
 
     private Class<E> objectClass;
 
     @SuppressWarnings("unchecked")
-    public BmSuiteBaseEntityDaoImpl() {
+    public BmSuiteEntityDaoImpl() {
         this.objectClass = (Class<E>) GenericEntityUtils.getGenericEntityClassFromComponentDefinition(getClass());
     }
 

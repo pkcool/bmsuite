@@ -1,6 +1,6 @@
 package com.enginemobi.core.generic.service;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 import com.enginemobi.core.generic.exception.ServiceException;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @param <K> type Primary Key
  */
-public interface BmSuiteEntityService<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>> extends TransactionalAspectAwareService{
+public interface BmSuiteEntityService<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>> extends TransactionalAspectAwareService{
 
     /**
      * @param entity entity

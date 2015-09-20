@@ -1,7 +1,7 @@
 package com.enginemobi.core.store.domain;
 
 import com.enginemobi.common.persistence.Status;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 import com.enginemobi.core.reference.country.domain.Country;
 import com.enginemobi.core.reference.currency.domain.Currency;
 import com.enginemobi.core.reference.language.domain.Language;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Represent merchant store
  */
-public interface Store extends Status, BmSuiteBaseEntity<Long, Store> {
+public interface Store extends Status, BmSuiteEntity<Long, Store> {
 
     String getCode();
 

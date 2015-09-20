@@ -1,9 +1,9 @@
 package com.enginemobi.core.reference.country.domain;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 
 
-public interface Country extends BmSuiteBaseEntity<Integer, Country>{
+public interface Country extends BmSuiteEntity<Integer, Country> {
     String getName();
 
     void setName(String name);

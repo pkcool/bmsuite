@@ -1,7 +1,7 @@
 package com.enginemobi.core.reference.currency.domain;
 
 import com.enginemobi.core.constants.SchemaConstant;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
+import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -15,7 +15,7 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name = "CURRENCY", schema = SchemaConstant.BMSUITEDB_SCHEMA)
 @Cacheable
-public class CurrencyImpl extends BmSuiteBaseEntityImpl<Long, Currency> implements Currency {
+public class CurrencyImpl extends BmSuiteEntityImpl<Long, Currency> implements Currency {
     private static final long serialVersionUID = 1L;
 
     @Id

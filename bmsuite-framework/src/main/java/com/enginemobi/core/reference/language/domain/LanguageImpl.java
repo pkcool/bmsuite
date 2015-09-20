@@ -4,7 +4,7 @@ import com.enginemobi.core.common.domain.audit.AuditListener;
 import com.enginemobi.core.common.domain.audit.AuditSection;
 import com.enginemobi.core.common.domain.audit.Auditable;
 import com.enginemobi.core.constants.SchemaConstant;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
+import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 import com.enginemobi.core.store.domain.Store;
 import com.enginemobi.core.store.domain.StoreImpl;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @EntityListeners(value = AuditListener.class)
 @Table(name = "LANGUAGE", schema= SchemaConstant.BMSUITEDB_SCHEMA)
 @Cacheable
-public class LanguageImpl extends BmSuiteBaseEntityImpl<Integer, Language> implements Auditable, Language {
+public class LanguageImpl extends BmSuiteEntityImpl<Integer, Language> implements Auditable, Language {
     private static final long serialVersionUID = -7676627812941330669L;
 
 

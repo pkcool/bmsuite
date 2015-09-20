@@ -2,7 +2,7 @@ package com.enginemobi.core.store.domain;
 
 import com.enginemobi.common.persistence.ArchiveStatus;
 import com.enginemobi.core.constants.SchemaConstant;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
+import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 import com.enginemobi.core.reference.country.domain.Country;
 import com.enginemobi.core.reference.country.domain.CountryImpl;
 import com.enginemobi.core.reference.currency.domain.Currency;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "MERCHANT_STORE", schema= SchemaConstant.BMSUITEDB_SCHEMA)
-public class StoreImpl extends BmSuiteBaseEntityImpl<Long, Store> implements Store {
+public class StoreImpl extends BmSuiteEntityImpl<Long, Store> implements Store {
 
     private static final long serialVersionUID = 1L;
 

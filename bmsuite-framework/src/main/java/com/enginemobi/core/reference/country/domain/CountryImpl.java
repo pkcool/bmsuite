@@ -1,14 +1,14 @@
 package com.enginemobi.core.reference.country.domain;
 
 import com.enginemobi.core.constants.SchemaConstant;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
+import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "COUNTRY", schema= SchemaConstant.BMSUITEDB_SCHEMA)
 @Cacheable
-public class CountryImpl extends BmSuiteBaseEntityImpl<Integer,Country> implements Country {
+public class CountryImpl extends BmSuiteEntityImpl<Integer,Country> implements Country {
     private static final long serialVersionUID = 1L;
 
     @Id

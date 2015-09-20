@@ -1,9 +1,9 @@
 package com.enginemobi.core.reference.currency.domain;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 
 
-public interface Currency extends BmSuiteBaseEntity<Long, Currency> {
+public interface Currency extends BmSuiteEntity<Long, Currency> {
 
     java.util.Currency getCurrency();
 

@@ -1,6 +1,6 @@
 package com.enginemobi.core.generic.dao;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @param <E> type entity
  */
-public interface BmSuiteBaseEntityDao<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>> {
+public interface BmSuiteEntityDao<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>> {
 
     /**
      * @param clazz class

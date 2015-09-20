@@ -8,7 +8,7 @@ import com.enginemobi.core.common.domain.audit.AuditListener;
 import com.enginemobi.core.common.domain.audit.AuditSection;
 import com.enginemobi.core.common.domain.audit.Auditable;
 import com.enginemobi.core.constants.SchemaConstant;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntityImpl;
+import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -40,7 +40,7 @@ import java.util.Set;
 @Table(name = "PRODUCT", schema = SchemaConstant.BMSUITEDB_SCHEMA,
         indexes={
                 @Index(name="ACTIVE_START_DATE_INDEX", columnList="ACTIVE_START_DATE")})
-public class ProductImpl extends BmSuiteBaseEntityImpl<Long, Product> implements Product, Status, Auditable {
+public class ProductImpl extends BmSuiteEntityImpl<Long, Product> implements Product, Status, Auditable {
     /** fields **/
     @Id
     @Column(name = "PRODUCT_ID", unique = true, nullable = false)

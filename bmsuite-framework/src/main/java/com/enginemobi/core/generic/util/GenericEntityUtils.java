@@ -1,6 +1,6 @@
 package com.enginemobi.core.generic.util;
 
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -23,7 +23,7 @@ public final class GenericEntityUtils {
                         argumentClass = (Class<?>) argumentType;
                     }
 
-                    if (BmSuiteBaseEntity.class.isAssignableFrom(argumentClass)) {
+                    if (BmSuiteEntity.class.isAssignableFrom(argumentClass)) {
                         return argumentClass;
                     }
                 }

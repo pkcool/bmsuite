@@ -1,7 +1,7 @@
 package com.enginemobi.core.generic.service;
 
-import com.enginemobi.core.generic.dao.BmSuiteBaseEntityDao;
-import com.enginemobi.core.generic.domain.BmSuiteBaseEntity;
+import com.enginemobi.core.generic.dao.BmSuiteEntityDao;
+import com.enginemobi.core.generic.domain.BmSuiteEntity;
 import javax.persistence.metamodel.SingularAttribute;
 
 import com.enginemobi.core.generic.exception.ServiceException;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @param <E> entity type
  */
-public abstract class BmSuiteEntityServiceImpl<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>>
+public abstract class BmSuiteEntityServiceImpl<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
 	implements BmSuiteEntityService<K, E> {
 	
 	/**
@@ -21,10 +21,10 @@ public abstract class BmSuiteEntityServiceImpl<K extends Serializable & Comparab
 	 */
 	private Class<E> objectClass;
 
-	private BmSuiteBaseEntityDao<K, E> genericDao;
+	private BmSuiteEntityDao<K, E> genericDao;
 
 	@SuppressWarnings("unchecked")
-	public BmSuiteEntityServiceImpl(BmSuiteBaseEntityDao<K, E> genericDao) {
+	public BmSuiteEntityServiceImpl(BmSuiteEntityDao<K, E> genericDao) {
 		this.genericDao = genericDao;
 		
 		this.objectClass = (Class<E>) GenericEntityUtils.getGenericEntityClassFromComponentDefinition(getClass());

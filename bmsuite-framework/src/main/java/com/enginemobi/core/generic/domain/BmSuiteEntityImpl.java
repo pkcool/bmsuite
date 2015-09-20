@@ -6,11 +6,8 @@ import java.io.Serializable;
 import java.text.Collator;
 import java.util.Locale;
 
-/**
- * Created by smaxll on 17/09/2015.
- */
-public abstract class BmSuiteBaseEntityImpl<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>>
-        implements BmSuiteBaseEntity<K, E> {
+public abstract class BmSuiteEntityImpl<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
+        implements BmSuiteEntity<K, E> {
     private static final long serialVersionUID = 1L;
 
     public static final Collator DEFAULT_STRING_COLLATOR = Collator.getInstance(Locale.ENGLISH);
@@ -41,7 +38,7 @@ public abstract class BmSuiteBaseEntityImpl<K extends Serializable & Comparable<
             return false;
         }
 
-        BmSuiteBaseEntity<K, E> entity = (BmSuiteBaseEntity<K, E>) object;
+        BmSuiteEntity<K, E> entity = (BmSuiteEntity<K, E>) object;
         K id = getId();
 
         if (id == null) {

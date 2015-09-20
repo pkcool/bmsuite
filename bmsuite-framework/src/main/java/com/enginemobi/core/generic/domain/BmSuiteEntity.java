@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @param <K> primary key
  * @param <E> entity
  */
-public interface BmSuiteBaseEntity<K extends Serializable & Comparable<K>, E extends BmSuiteBaseEntity<K, ?>>
+public interface BmSuiteEntity<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
         extends Serializable, Comparable<E>  {
 
         K getId();

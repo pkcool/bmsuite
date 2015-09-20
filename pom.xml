@@ -158,7 +158,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>${bmsuite.hibernate-entitymanager-version}</version>
+                <version>${hibernate.entitymanager.version}</version>
                 <exclusions>
                     <exclusion>
                         <artifactId>javassist</artifactId>
@@ -170,7 +170,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
-                <version>${bmsuite.hibernate-entitymanager-version}</version>
+                <version>${hibernate.entitymanager.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
                 <exclusions>
@@ -215,6 +215,8 @@
                 <version>5.1.3.Final</version>
             </dependency>
 
+
+
             <!-- Loggers start -->
             <dependency>
                 <groupId>log4j</groupId>
@@ -240,6 +242,14 @@
                 <scope>test</scope>
             </dependency>
             <!-- Testing libraries end -->
+
+            <!-- Others -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>1.3.9</version>
+                <scope>compile</scope>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
