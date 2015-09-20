@@ -30,9 +30,11 @@
     <properties>
         <bmsuite.junit.version>4.9</bmsuite.junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <bmsuite.hibernate-entitymanager-version>5.0.0.Final</bmsuite.hibernate-entitymanager-version>
+        <hibernate.entitymanager.version>5.0.0.Final</hibernate.entitymanager.version>
         <spring.version>4.1.6.RELEASE</spring.version>
         <spring.security.version>3.2.6.RELEASE</spring.security.version>
+        <h2database.version>1.4.185</h2database.version>
+        <c3p0.version>0.9.1.2</c3p0.version>
     </properties>
 
 
@@ -185,6 +187,20 @@
                         <groupId>org.javassist</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- H2 embedded database -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2database.version}</version>
+            </dependency>
+
+            <!-- Pool c3p0 -->
+            <dependency>
+                <groupId>c3p0</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${c3p0.version}</version>
             </dependency>
 
             <!-- JSR 303 with Hibernate Validator -->
