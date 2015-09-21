@@ -9,21 +9,10 @@ import java.util.Map;
 
  public interface Customer extends BmSuiteEntity<Long, Customer>, Auditable {
 
-     Long getId();
+     User getUser();
+     void setUser(User user);
 
-     void setId(Long id);
 
-     void setRoles(List<Role> roles);
-
-     List<Role> getRoles();
-
-     String getUsername();
-
-     void setUsername(String username);
-
-     String getPassword();
-
-     void setPassword(String password);
 
      boolean isPasswordChangeRequired();
 
@@ -40,10 +29,6 @@ import java.util.Map;
      String getLastName();
 
      void setLastName(String lastName);
-
-     String getEmailAddress();
-
-     void setEmailAddress(String emailAddress);
 
      ChallengeQuestion getChallengeQuestion();
 

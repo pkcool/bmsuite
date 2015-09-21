@@ -3,7 +3,6 @@ package com.enginemobi.core.profile.domain;
 import com.enginemobi.core.common.domain.audit.AuditListener;
 import com.enginemobi.core.common.domain.audit.AuditSection;
 import com.enginemobi.core.common.domain.audit.Auditable;
-import com.enginemobi.core.constants.SchemaConstant;
 import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
 import com.enginemobi.core.store.domain.Store;
 import org.apache.commons.lang3.BooleanUtils;
@@ -11,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.Index;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.CascadeType;
 import javax.persistence.*;
@@ -26,7 +24,7 @@ import java.util.Map;
 @Entity
 @EntityListeners(value = { AuditListener.class, CustomerPersistedEntityListener.class })
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "BLC_CUSTOMER")
+@Table(name = "CUSTOMER")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "blCustomerElements")
 public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements Customer, Auditable{
 
@@ -34,44 +32,16 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
 
     @Id
     @Column(name = "CUSTOMER_ID")
-    @TableGenerator(name = SchemaConstant.TABLE_GENERATOR_NAME, table = SchemaConstant.TABLE_GENERATOR_TABLE_NAME,
-            pkColumnName = SchemaConstant.TABLE_GENERATOR_PKCOLUMN_NAME, valueColumnName = SchemaConstant.TABLE_GENERATOR_VALUE_COLUMN_NAME,
-            pkColumnValue = "CUSTOMER_SEQ_NEXT_VAL")
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = SchemaConstant.TABLE_GENERATOR_NAME)
     protected Long id;
+
+    @JoinColumn(name = "USER_ID", nullable = false, unique = true)
+    @OneToOne
+    @MapsId
+    protected User user;
 
     @Embedded
     protected AuditSection auditSection = new AuditSection();
 
-    @NotEmpty
-    @Column(name="ADMIN_NAME", length=100, unique=true)
-    private String adminName;
-
-    @ManyToMany(fetch=FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinTable(name = "CUSTOMER_ROLE", schema=SchemaConstant.BMSUITEDB_SCHEMA, joinColumns = {
-            @JoinColumn(name = "CUSTOMER_ID", nullable = false, updatable = false) }
-            ,
-            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID",
-                    nullable = false, updatable = false) }
-    )
-    @Cascade({
-            org.hibernate.annotations.CascadeType.DETACH,
-            org.hibernate.annotations.CascadeType.LOCK,
-            org.hibernate.annotations.CascadeType.REFRESH,
-            org.hibernate.annotations.CascadeType.REPLICATE
-
-    })
-    private List<Role> roles = new ArrayList<Role>();
-
-    @Column(name = "USER_NAME")
-    protected String username;
-
-    @Column(name = "PASSWORD")
-    protected String password;
-
-    @Column(name = "EMAIL_ADDRESS")
-    @Index(name = "CUSTOMER_EMAIL_INDEX", columnNames = { "EMAIL_ADDRESS" })
-    protected String emailAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="STORE_ID", nullable=false)
@@ -161,32 +131,17 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
 
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+
+    public User getUser() {
+        return user;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
+    public void setUser(User user) {
 
-    public String getUsername() {
-        return username;
-    }
-
-
-    public void setUsername(String username) {
-        this.username = username;
+        this.user = user;
     }
 
 
-    public String getPassword() {
-        return password;
-    }
-
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 
     public boolean isPasswordChangeRequired() {
@@ -226,15 +181,6 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
         this.lastName = lastName;
     }
 
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
 
 
     public ChallengeQuestion getChallengeQuestion() {
@@ -409,23 +355,10 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
             return id.equals(other.id);
         }
 
-        if (username == null) {
-            if (other.username != null) {
-                return false;
-            }
-        } else if (!username.equals(other.username)) {
-            return false;
-        }
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((username == null) ? 0 : username.hashCode());
-        return result;
-    }
+
 
 
     public String getTaxExemptionCode() {
