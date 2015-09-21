@@ -3,12 +3,15 @@ package com.enginemobi.core.profile.domain;
 import com.enginemobi.core.common.domain.audit.AuditListener;
 import com.enginemobi.core.common.domain.audit.AuditSection;
 import com.enginemobi.core.common.domain.audit.Auditable;
+import com.enginemobi.core.constants.SchemaConstant;
 import com.enginemobi.core.generic.domain.BmSuiteEntityImpl;
+import com.enginemobi.core.store.domain.Store;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.Index;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.CascadeType;
 import javax.persistence.*;
@@ -31,10 +34,34 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
 
     @Id
     @Column(name = "CUSTOMER_ID")
+    @TableGenerator(name = SchemaConstant.TABLE_GENERATOR_NAME, table = SchemaConstant.TABLE_GENERATOR_TABLE_NAME,
+            pkColumnName = SchemaConstant.TABLE_GENERATOR_PKCOLUMN_NAME, valueColumnName = SchemaConstant.TABLE_GENERATOR_VALUE_COLUMN_NAME,
+            pkColumnValue = "CUSTOMER_SEQ_NEXT_VAL")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = SchemaConstant.TABLE_GENERATOR_NAME)
     protected Long id;
 
     @Embedded
     protected AuditSection auditSection = new AuditSection();
+
+    @NotEmpty
+    @Column(name="ADMIN_NAME", length=100, unique=true)
+    private String adminName;
+
+    @ManyToMany(fetch=FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinTable(name = "CUSTOMER_ROLE", schema=SchemaConstant.BMSUITEDB_SCHEMA, joinColumns = {
+            @JoinColumn(name = "CUSTOMER_ID", nullable = false, updatable = false) }
+            ,
+            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID",
+                    nullable = false, updatable = false) }
+    )
+    @Cascade({
+            org.hibernate.annotations.CascadeType.DETACH,
+            org.hibernate.annotations.CascadeType.LOCK,
+            org.hibernate.annotations.CascadeType.REFRESH,
+            org.hibernate.annotations.CascadeType.REPLICATE
+
+    })
+    private List<Role> roles = new ArrayList<Role>();
 
     @Column(name = "USER_NAME")
     protected String username;
@@ -45,6 +72,10 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
     @Column(name = "EMAIL_ADDRESS")
     @Index(name = "CUSTOMER_EMAIL_INDEX", columnNames = { "EMAIL_ADDRESS" })
     protected String emailAddress;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="STORE_ID", nullable=false)
+    private Store store;
 
     @Column(name = "FIRST_NAME")
     protected String firstName;
@@ -130,6 +161,14 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
 
     }
 
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -157,6 +196,14 @@ public class CustomerImpl extends BmSuiteEntityImpl<Long, Customer> implements C
 
     public void setPasswordChangeRequired(boolean passwordChangeRequired) {
         this.passwordChangeRequired = Boolean.valueOf(passwordChangeRequired);
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
 

@@ -2,6 +2,7 @@ package com.enginemobi.core.profile.domain;
 
 import com.enginemobi.core.common.domain.audit.Auditable;
 import com.enginemobi.core.generic.domain.BmSuiteEntity;
+import com.enginemobi.core.store.domain.Store;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,10 @@ import java.util.Map;
      Long getId();
 
      void setId(Long id);
+
+     void setRoles(List<Role> roles);
+
+     List<Role> getRoles();
 
      String getUsername();
 
@@ -23,6 +28,10 @@ import java.util.Map;
      boolean isPasswordChangeRequired();
 
      void setPasswordChangeRequired(boolean passwordChangeRequired);
+
+     Store getStore();
+
+     void setStore(Store store);
 
      String getFirstName();
 
