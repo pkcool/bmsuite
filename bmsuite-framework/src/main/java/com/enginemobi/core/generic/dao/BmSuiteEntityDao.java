@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @param <E> type entity
  */
-public interface BmSuiteEntityDao<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>> {
+public interface BmSuiteEntityDao<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>> extends SearchableDao<E> {
 
     /**
      * @param clazz class

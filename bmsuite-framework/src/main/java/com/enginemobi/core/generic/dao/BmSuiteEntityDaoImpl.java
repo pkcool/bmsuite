@@ -23,7 +23,7 @@ import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
  */
 public abstract class BmSuiteEntityDaoImpl<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
         extends BmSuiteJpaDaoSupport
-        implements BmSuiteEntityDao<K, E>, SearchableDao<E> {
+        implements BmSuiteEntityDao<K, E>{
 
     private Class<E> objectClass;
 
