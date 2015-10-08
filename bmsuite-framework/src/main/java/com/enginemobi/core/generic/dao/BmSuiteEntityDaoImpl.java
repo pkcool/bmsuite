@@ -1,21 +1,29 @@
 package com.enginemobi.core.generic.dao;
 
+import com.enginemobi.core.common.Criterion;
+import com.enginemobi.core.common.SearchCriteria;
 import com.enginemobi.core.generic.domain.BmSuiteEntity;
 import com.enginemobi.core.generic.util.GenericEntityUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Order;
+import javax.persistence.criteria.*;
 import javax.persistence.metamodel.SingularAttribute;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 /**
  * @param <E> entity type
+ * @Param <K> id </K>
  */
 public abstract class BmSuiteEntityDaoImpl<K extends Serializable & Comparable<K>, E extends BmSuiteEntity<K, ?>>
         extends BmSuiteJpaDaoSupport
-        implements BmSuiteEntityDao<K, E> {
+        implements BmSuiteEntityDao<K, E>, SearchableDao<E> {
 
     private Class<E> objectClass;
 
@@ -97,5 +105,39 @@ public abstract class BmSuiteEntityDaoImpl<K extends Serializable & Comparable<K
     @Override
     public EntityManager getEntityManager() {
         return super.getEntityManager();
+    }
+
+    public Page<E> search(SearchCriteria criteria, Pageable pageable)
+    {
+        CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
+
+        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
+        Root<E> countRoot = countCriteria.from(this.objectClass);
+        long total = this.getEntityManager().createQuery(
+                countCriteria.select(builder.count(countRoot))
+                        .where(toPredicates(criteria, countRoot, builder))
+        ).getSingleResult();
+
+        CriteriaQuery<E> pageCriteria = builder.createQuery(this.objectClass);
+        Root<E> pageRoot = pageCriteria.from(this.objectClass);
+        List<E> list = this.getEntityManager().createQuery(
+                pageCriteria.select(pageRoot)
+                        .where(toPredicates(criteria, pageRoot, builder))
+                        .orderBy(toOrders(pageable.getSort(), pageRoot, builder))
+        ).setFirstResult(pageable.getOffset())
+                .setMaxResults(pageable.getPageSize())
+                .getResultList();
+
+        return new PageImpl<E>(new ArrayList<E>(list), pageable, total);
+    }
+
+    private static Predicate[] toPredicates(SearchCriteria criteria, Root<?> root,
+                                            CriteriaBuilder builder)
+    {
+        Predicate[] predicates = new Predicate[criteria.size()];
+        int i = 0;
+        for(Criterion c : criteria)
+            predicates[i++] = c.getOperator().toPredicate(c, root, builder);
+        return predicates;
     }
 }

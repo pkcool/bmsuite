@@ -24,6 +24,7 @@ public class BmSuiteJpaDaoSupport {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     protected <T> TypedQuery<T> buildTypedQuery(CriteriaQuery<T> criteria, Integer limit, Integer offset) {
         TypedQuery<T> query = getEntityManager().createQuery(criteria);
         if (offset != null) {
